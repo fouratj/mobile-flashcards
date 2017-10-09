@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import { connect } from 'react-redux'
+import { addDeck } from '../store/actions'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -24,16 +25,20 @@ class NewDeck extends React.Component {
 
   submit = () => {
     console.log(this.state)
+    this.props.addDeck(this.state.name)
   }
 
   render () {
     return (
       <View>
         <Text style={styles.header}>Add New Deck</Text>
+
         <TextInput
           onChangeText={(text) => this.updateName(text)}
           value={this.state.name}
-          ></TextInput>
+          >
+        </TextInput>
+
         <SubmitBtn onPress={this.submit} />
       </View>
     )
@@ -64,4 +69,12 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect()(NewDeck)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addDeck: (deck) => {
+      dispatch(addDeck(deck))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NewDeck)

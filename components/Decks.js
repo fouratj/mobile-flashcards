@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import Deck from './Deck'
 
 class Decks extends Component {
   render () {
-    const { decks } = this.props
-    console.log(decks)
+    const { state } = this.props
+    console.log(state)
     return(
       <View>
         <Text>Decks</Text>
@@ -17,7 +18,7 @@ class Decks extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    decks: state
+    state: state
   }
 }
 export default connect(mapStateToProps)(Decks)

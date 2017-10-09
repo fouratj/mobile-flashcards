@@ -10,7 +10,18 @@ function decks (state = {}, action) {
     case ADD_DECK:
       return {
         ...state,
-        [action.deck]: action.deck
+        [action.deck]: {
+          title: action.deck,
+          questions: []
+        }
+      }
+    case ADD_QUESTION:
+      return {
+        ...state,
+        [action.question.parent]: {
+          ...[action.question.parent],
+          questions: [...state[action.question.parent].questions, action.question]
+        }
       }
   }
 }

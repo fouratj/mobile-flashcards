@@ -24,8 +24,10 @@ class NewDeck extends React.Component {
   }
 
   submit = () => {
-    console.log(this.state)
     this.props.addDeck(this.state.name)
+    this.setState({
+      name: ''
+    })
   }
 
   render () {

@@ -38,6 +38,7 @@ class NewDeck extends React.Component {
         <TextInput
           onChangeText={(text) => this.updateName(text)}
           value={this.state.name}
+          style={styles.textInput}
           >
         </TextInput>
 
@@ -68,6 +69,15 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 22,
     textAlign: 'center',
+  },
+  textInput: {
+    backgroundColor: '#000',
+    marginLeft: 50,
+    marginRight: 50,
+    marginTop: 25,
+    marginBottom: 25,
+    height: 50,
+    color: '#fff'
   }
 })
 

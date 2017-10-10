@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -19,7 +19,7 @@ const Tabs = TabNavigator({
       tabBarIcon: ({ tintColor }) => <FontAwesome name='home' size={30} color={tintColor} />
     },
   },
-  Deck: {
+  NewDeck: {
     screen: NewDeck,
     navigationOptions: {
       tabBarLabel: 'Add New Deck',
@@ -35,13 +35,34 @@ const Tabs = TabNavigator({
   }
 })
 
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      headerTintColor: '#fcfdff',
+      headerStyle: {
+        backgroundColor: '#4286f4',
+      }
+    }
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: '#fcfdff',
+      headerStyle: {
+        backgroundColor: '#4286f4',
+      }
+    }
+  }
+})
+
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(decks)}>
         <View style={{ flex: 1}}>
           <MyStatusBar />
-          <Tabs />
+          <MainNavigator />
         </View>
       </Provider>
     );
@@ -51,7 +72,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#9eb5e2',
     alignItems: 'center',
     justifyContent: 'center',
   },

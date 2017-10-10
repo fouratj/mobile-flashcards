@@ -2,16 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from './Deck'
+import DeckInfo from './DeckInfo'
 
-function DeckInfo ({ deck, onPress }) {
-  return (
-      <TouchableOpacity
-        onPress={onPress}>
-          <Text style={styles.text}>{deck.title}</Text>
-          <Text style={styles.text}>{deck.questions.length}</Text>
-      </TouchableOpacity>
-    )
-}
 
 class Decks extends Component {
   getDeck = () => {
@@ -20,11 +12,10 @@ class Decks extends Component {
 
   render () {
     let { decks } = this.props
-    console.log(decks)
+
     if (decks)
       decks = Object.entries(decks).map(d => d[1])
     
-    console.log(decks)
     if (decks) {
       return(
         <View style={styles.container}>
@@ -32,8 +23,12 @@ class Decks extends Component {
             decks.map(deck => {
               return (
                 <DeckInfo 
+                  style={styles.deck}
                   deck={deck} 
-                  onPress={this.getDeck} 
+                  onPress={() => this.props.navigation.navigate(
+                    'Deck',
+                    { deck: deck.title }
+                  )} 
                   key={deck.title}
                   />
               )
@@ -54,7 +49,7 @@ class Decks extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   deck: {
     flex: 1,
@@ -62,6 +57,10 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center'
+  },
+  deck: {
+    marginTop: 30,
+    marginBottom: 30
   }
 })
 

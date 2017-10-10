@@ -4,7 +4,14 @@ import {
   ADD_QUESTION
 } from './actions'
 
-function decks (state = {}, action) {
+const initialState = {
+  'Deck #1': {
+    title: 'Deck #1',
+    questions: []
+  }
+}
+
+function decks (state = initialState, action) {
   switch(action.type) {
     case ADD_DECKS:
       return {
@@ -27,6 +34,8 @@ function decks (state = {}, action) {
           questions: [...state[action.question.parent].questions, action.question]
         }
       }
+    default:
+      return state
   }
 }
 

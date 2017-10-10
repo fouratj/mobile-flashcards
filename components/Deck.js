@@ -5,11 +5,8 @@ import DeckInfo from './DeckInfo'
 
 class Deck extends React.Component {
   render () {
-    console.log(this.props)
     const id = this.props.navigation.state.params.deck
-    console.log(id)
     const deck = this.props.decks[id]
-    console.log(deck)
     return (
       <View style={styles.deck}>
 

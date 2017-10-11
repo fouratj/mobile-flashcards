@@ -7,13 +7,17 @@ class Deck extends React.Component {
   render () {
     const id = this.props.navigation.state.params.deck
     const deck = this.props.decks[id]
+    console.log(deck)
     return (
       <View style={styles.deck}>
 
         <DeckInfo deck={deck} />
 
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                    'AddCard',
+                    { deckId: id }
+                  )}>
             <Text style={styles.btn}>Add Card</Text>
           </TouchableOpacity>
 

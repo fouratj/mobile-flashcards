@@ -1,7 +1,7 @@
 import { 
   ADD_DECKS,
   ADD_DECK,
-  ADD_QUESTION
+  ADD_CARD
 } from './actions'
 
 const initialState = {
@@ -26,7 +26,7 @@ function decks (state = initialState, action) {
           questions: []
         }
       }
-    case ADD_QUESTION:
+    case ADD_CARD:
       return {
         ...state,
         [action.question.parent]: {

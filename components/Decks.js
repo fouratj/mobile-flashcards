@@ -24,12 +24,12 @@ class Decks extends Component {
               return (
                 <DeckInfo 
                   style={styles.deck}
+                  key={deck.title}
                   deck={deck} 
                   onPress={() => this.props.navigation.navigate(
                     'Deck',
                     { deck: deck.title }
                   )} 
-                  key={deck.title}
                   />
               )
             })

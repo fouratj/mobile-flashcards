@@ -21,6 +21,7 @@ class AddCard extends Component {
     answer: '',
   }
 
+  
   updateQuestion = (value) => {
     this.setState({ question: value })
   }

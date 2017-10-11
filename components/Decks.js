@@ -3,9 +3,20 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from './Deck'
 import DeckInfo from './DeckInfo'
-
+import { getDecks } from '../utils/storage'
+import { addDeck } from '../store/actions'
 
 class Decks extends Component {
+
+  componentDidMount () {
+    const { addDeck } = this.props
+    getDecks()
+      .then((decks) => {
+        for (let d in decks) {
+          addDeck(decks[d].title)
+        }
+    })
+  }
   getDeck = () => {
     console.log('got deck!')
   }
@@ -69,4 +80,13 @@ const mapStateToProps = (state) => {
     decks: state
   }
 }
-export default connect(mapStateToProps)(Decks)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addDeck: (deck) => {
+      dispatch(addDeck(deck))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Decks)

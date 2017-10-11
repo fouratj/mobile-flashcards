@@ -11,6 +11,7 @@ import NewDeck from './components/NewDeck'
 import Quiz from './components/Quiz'
 import AddCard from './components/AddCard'
 import MyStatusBar from './components/MyStatusBar'
+import { addDeck } from './store/actions'
 
 const Tabs = TabNavigator({
   Decks: {
@@ -25,13 +26,6 @@ const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'Add New Deck',
       tabBarIcon: ({ tintColor }) => <FontAwesome name="plus" size={30} color={tintColor} />
-    }
-  },
-  Quiz: {
-    screen: Quiz,
-    navigationOptions: {
-      tabBarLabel: 'Quiz',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name="book" size={30} color={tintColor} />
     }
   }
 })
@@ -67,7 +61,8 @@ const MainNavigator = StackNavigator({
   }
 })
 
-export default class App extends React.Component {
+class App extends React.Component {
+
   render() {
     return (
       <Provider store={createStore(decks)}>
@@ -88,3 +83,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App

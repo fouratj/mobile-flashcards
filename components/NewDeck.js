@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import { addDeck } from '../store/actions'
+import { saveDeck, getDecks } from '../utils/storage'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -22,9 +23,17 @@ class NewDeck extends React.Component {
   updateName = (value) => {
     this.setState({ name: value })
   }
-
+  
   submit = () => {
-    this.props.addDeck(this.state.name)
+    const { name } = this.state
+
+    saveDeck({
+      title: name,
+      questions: []
+    }).then(() => {
+      this.props.addDeck(name)
+    })
+
     this.setState({
       name: ''
     })

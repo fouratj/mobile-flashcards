@@ -13,7 +13,7 @@ class Decks extends Component {
     getDecks()
       .then((decks) => {
         for (let d in decks) {
-          addDeck(decks[d].title)
+          addDeck(decks[d])
         }
     })
   }
@@ -31,11 +31,11 @@ class Decks extends Component {
       return(
         <View style={styles.container}>
           {
-            decks.map(deck => {
+            decks.map((deck, i) => {
               return (
                 <DeckInfo 
                   style={styles.deck}
-                  key={deck.title}
+                  key={i}
                   deck={deck} 
                   onPress={() => this.props.navigation.navigate(
                     'Deck',

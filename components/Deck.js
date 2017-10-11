@@ -17,11 +17,14 @@ class Deck extends React.Component {
           <TouchableOpacity onPress={() => this.props.navigation.navigate(
                     'AddCard',
                     { deckId: id }
-                  )}>
+            )}>
             <Text style={styles.btn}>Add Card</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate(
+              'Quiz',
+              { deckId: id }
+            )}>
             <Text style={[styles.btn, styles.black]}>Start Quiz</Text>
           </TouchableOpacity>
         </View>

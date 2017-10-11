@@ -20,15 +20,22 @@ export const DECK_KEY = 'MobileFlashcards:decks'
 
 export function getDecks () {
   return AsyncStorage.getItem(DECK_KEY)
-        .then((results) => {
-          return JSON.parse(results)
-        })
+        .then((results) => JSON.parse(results))
 }
 
 export function saveDeck (deck) {
   return AsyncStorage.mergeItem(DECK_KEY, JSON.stringify({
     [deck.title]: deck
   }))
+}
+
+export function addCardToDeck (deckTitle, card) {
+  return AsyncStorage.getItem(DECK_KEY)
+    .then((results) => {
+      const decks = JSON.parse(results)
+      decks[deckTitle].questions.push(card)
+      AsyncStorage.setItem(DECK_KEY, JSON.stringify(decks))
+    })
 }
 
 // getDecks: return all of the decks along with their titles, questions, and answers. 

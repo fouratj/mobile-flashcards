@@ -5,7 +5,9 @@ class Quiz extends React.Component {
   render () {
     return (
     <View>
-      <Text>Quiz</Text>
+      <Text>{
+        this.props.navigation.state.params.deckId
+      }</Text>
     </View>
     )
   }

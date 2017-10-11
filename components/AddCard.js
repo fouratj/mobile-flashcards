@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard } from '../store/actions'
+import { addCardToDeck } from '../utils/storage'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -23,26 +24,35 @@ class AddCard extends Component {
 
   
   updateQuestion = (value) => {
-    this.setState({ question: value })
+    this.setState({ 
+      ...this.state,
+      question: value 
+    })
   }
 
   updateAnswer = (value) => {
-    this.setState({ answer: value })
+    this.setState({ 
+      ...this.state,
+      answer: value 
+    })
   }
 
   submit = () => {
-    const { question, answer } = this.props
-
-    this.props.addCard({
-      question: question,
-      answer: answer,
-      parent: this.props.navigation.state.params.deckId
+    const { question, answer } = this.state
+    const { deckId } = this.props.navigation.state.params
+    addCardToDeck( deckId, {
+        question,
+        answer
+      }
+    ).then(() => {
+      this.props.addCard({
+        question: question,
+        answer: answer,
+        parent: this.props.navigation.state.params.deckId
+      })
     })
 
-    this.setState({
-      question: '',
-      answer: ''
-    })
+    this.setState({ question: '', answer: '' })
   }
 
 

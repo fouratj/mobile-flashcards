@@ -58,6 +58,16 @@ const MainNavigator = StackNavigator({
       },
       headerTitle: 'Add Card'
     }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: '#fcfdff',
+      headerStyle: {
+        backgroundColor: '#4286f4'
+      },
+      headerTitle: 'Quiz Time'
+    }
   }
 })
 

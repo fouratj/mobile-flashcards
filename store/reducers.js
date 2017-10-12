@@ -22,7 +22,13 @@ function decks (state = initialState, action) {
         ...state,
         [action.question.parent]: {
           ...[action.question.parent],
-          questions: [...state[action.question.parent].questions, action.question]
+          questions: [
+            ...state[action.question.parent].questions, 
+            { 
+              question: action.question.question,
+              answer: action.question.answer
+            }
+          ]
         }
       }
     default:

@@ -17,17 +17,17 @@ class Decks extends Component {
         }
     })
   }
+
   getDeck = () => {
-    console.log('got deck!')
+    //console.log('got deck!')
   }
 
   render () {
     let { decks } = this.props
-
     if (decks)
       decks = Object.entries(decks).map(d => d[1])
-    
-    if (decks) {
+
+    if (decks.length) {
       return(
         <View style={styles.container}>
           {

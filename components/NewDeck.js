@@ -30,9 +30,7 @@ class NewDeck extends React.Component {
     saveDeck({
       title: name,
       questions: []
-    }).then(() => {
-      this.props.addDeck(name)
-    })
+    }).then(() => this.props.addDeck({ title: name, questions: [] }))
 
     this.setState({
       name: ''

@@ -3,19 +3,16 @@ import {
   ADD_CARD
 } from './actions'
 
-const initialState = {
-  'Deck #1': {
-    title: 'Deck #1',
-    questions: []
-  }
-}
 
-function decks (state = initialState, action) {
+function decks (state = {}, action) {
   switch(action.type) {
     case ADD_DECK:
       return {
         ...state,
-        [action.deck.title]: action.deck
+        [action.deck.title]: {
+          title: action.deck.title,
+          questions: action.deck.questions
+        }
       }
     case ADD_CARD:
       return {

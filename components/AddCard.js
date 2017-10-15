@@ -40,6 +40,7 @@ class AddCard extends Component {
   submit = () => {
     const { question, answer } = this.state
     const { deckId } = this.props.navigation.state.params
+
     addCardToDeck( deckId, {
         question,
         answer
@@ -55,10 +56,9 @@ class AddCard extends Component {
     this.setState({ question: '', answer: '' })
   }
 
-
   render () {
     const id = this.props.navigation.state.params.deckId
-    console.log(id)
+    
     return (
       <View style={styles.container}>
         <TextInput

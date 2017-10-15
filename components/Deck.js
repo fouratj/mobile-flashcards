@@ -7,7 +7,7 @@ class Deck extends React.Component {
   render () {
     const id = this.props.navigation.state.params.deck
     const deck = this.props.decks[id]
-    console.log(deck)
+    
     return (
       <View style={styles.deck}>
 

@@ -19,14 +19,17 @@ export const DECK_KEY = 'MobileFlashcards:decks'
 // }
 
 export function getDecks () {
-  return AsyncStorage.getItem(DECK_KEY)
+  return AsyncStorage.getItem(DECK_KEY)        
         .then((results) => JSON.parse(results))
 }
 
 export function saveDeck (deck) {
   return AsyncStorage.mergeItem(DECK_KEY, JSON.stringify({
-    [deck.title]: deck
-  }))
+    [deck.title]: {
+      title: deck.title,
+      questions: []
+    }
+  })).then((data) => JSON.parse(data))
 }
 
 export function addCardToDeck (deckTitle, card) {
@@ -37,6 +40,8 @@ export function addCardToDeck (deckTitle, card) {
       AsyncStorage.setItem(DECK_KEY, JSON.stringify(decks))
     })
 }
+
+//  AsyncStorage.removeItem(DECK_KEY)
 
 // getDecks: return all of the decks along with their titles, questions, and answers. 
 // getDeck: take in a single id argument and return the deck associated with that id. 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard } from '../store/actions'
-import { addCardToDeck } from '../utils/storage'
+import { addCardToDeck, getDecks } from '../utils/storage'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -46,10 +46,10 @@ class AddCard extends Component {
         answer
       }
     ).then(() => {
-      this.props.addCard({
-        question: question,
-        answer: answer,
-        parent: this.props.navigation.state.params.deckId
+      getDecks().then(() => {
+        this.props.navigation.navigate(
+          'Home'
+        )
       })
     })
 

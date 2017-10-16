@@ -15,7 +15,6 @@ function SubmitBtn ({ onPress }) {
   )
 }
 
-
 class AddCard extends Component {
   state = {
     question: '',

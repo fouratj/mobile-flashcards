@@ -74,6 +74,7 @@ const MainNavigator = StackNavigator({
 class App extends React.Component {
 
   render() {
+    console.log('app')
     return (
       <Provider store={createStore(decks)}>
         <View style={{ flex: 1}}>

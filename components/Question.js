@@ -10,16 +10,18 @@ class Question extends Component {
     return (
       <View style={styles.container}>
 
-        {!this.state.visible && <Text
+        {!this.state.visible && (
+          <Text
             style={styles.question}>
               {this.props.question}
-          </Text>
+          </Text>)
         }
         
-        {this.state.visible && <Text
-            style={styles.answer}>
-              {this.props.answer}
-          </Text>
+        {this.state.visible && (
+          <Text
+              style={styles.answer}>
+                {this.props.answer}
+          </Text>)
         }
         
         <TouchableOpacity
@@ -28,13 +30,12 @@ class Question extends Component {
             this.setState({
               visible: !this.state.visible
             })
-          }}
-          >
+          }}>
+
           {this.state.visible ? 
             <Text>Show Question</Text> :
-            <Text>Show Answer</Text> 
-          }
-          
+            <Text>Show Answer</Text>}
+            
         </TouchableOpacity>
       </View>
     )

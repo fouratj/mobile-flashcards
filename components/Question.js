@@ -4,9 +4,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 class Question extends Component {
   state = {
     visible: false,
-    answer: null
+    answer: null,
+    answered: false,
   }
-
+ 
   update = (choice) => {
     const { state } = this
     this.setState({
@@ -14,7 +15,6 @@ class Question extends Component {
       answer: choice
     }, () => {
       this.props.updateResults(choice)
-      this.props.next()
     })
   }
 
@@ -44,27 +44,39 @@ class Question extends Component {
           style={styles.button}
           onPress={() => {
             this.setState({
-              visible: !this.state.visible
+              visible: !this.state.visible,
+              answered: true
             })
           }}>
             {
-              this.state.visible ? 
-              <Text>Show Question</Text> :
-              <Text>Show Answer</Text>
+              !this.state.visible ? 
+              <Text>Show Answer</Text> :
+              null
             }
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => this.update(true)}
-          >
-          <Text>Correct?</Text>
-        </TouchableOpacity>
+        
+          {
+            this.state.answered && (
+              <View style={styles.buttonRow}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => this.update(true)}
+                  >
+                  <Text>Correct?</Text>
+                </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => this.update(false)}
-          >
-          <Text>Incorrect?</Text>
-        </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => this.update(false)}
+                  >
+                  <Text>Incorrect?</Text>
+                </TouchableOpacity>
+              </View>
+            )
+          }
+
+        
 
       </View>
     )
@@ -74,6 +86,12 @@ class Question extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  buttonRow: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 20
   },
   question: {
     fontSize: 24,

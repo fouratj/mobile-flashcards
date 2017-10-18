@@ -11,23 +11,17 @@ class Quiz extends React.Component {
   }
 
   update = (result) => {
+    const { results, curr } = this.state
     let change = 0;
-    console.log(result)
+    
     if (result  === true) {
       change += 1
-    } else if (result === false) {
-      change -= 1
     }
-    this.setState({
-      ...this.state,
-      results: this.state.results + change
-    })
-  }
 
-  nextQuestion = () => {
     this.setState({
       ...this.state,
-      curr: this.state.curr + 1
+      results: results + change,
+      curr: curr + 1
     })
   }
 
@@ -56,7 +50,6 @@ class Quiz extends React.Component {
               question={deck.questions[curr].question} 
               answer={deck.questions[curr].answer}
               updateResults={this.update}
-              next={this.nextQuestion}
               key={curr} />
             ) :
             <Text> Quiz Finished</Text>

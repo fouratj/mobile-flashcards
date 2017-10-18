@@ -11,9 +11,23 @@ class Quiz extends React.Component {
   }
 
   update = (result) => {
+    let change = 0;
+    console.log(result)
+    if (result  === true) {
+      change += 1
+    } else if (result === false) {
+      change -= 1
+    }
     this.setState({
       ...this.state,
-      results: results++
+      results: this.state.results + change
+    })
+  }
+
+  nextQuestion = () => {
+    this.setState({
+      ...this.state,
+      curr: this.state.curr + 1
     })
   }
 
@@ -41,21 +55,18 @@ class Quiz extends React.Component {
             <Question 
               question={deck.questions[curr].question} 
               answer={deck.questions[curr].answer}
-              updateResults={this.update} />
+              updateResults={this.update}
+              next={this.nextQuestion}
+              key={curr} />
             ) :
             <Text> Quiz Finished</Text>
           }
         
         <TouchableOpacity
           style={styles.button}
-          onPress={() => {
-            this.setState({
-              ...this.state,
-              curr: this.state.curr + 1
-            }, () => console.log(this.state))
-          }}>
+          onPress={() => this.nextQuestion }>
 
-          <Text>Next Question</Text>
+          <Text>Skip Question</Text>
             
         </TouchableOpacity>
         <View>

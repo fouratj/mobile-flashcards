@@ -3,25 +3,41 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 class Question extends Component {
   state = {
-    visible: false
+    visible: false,
+    answer: null
+  }
+
+  update = (choice) => {
+    const { state } = this
+    this.setState({
+      ...state,
+      answer: choice
+    }, () => {
+      this.props.updateResults(choice)
+      this.props.next()
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
 
-        {!this.state.visible && (
-          <Text
-            style={styles.question}>
-              {this.props.question}
-          </Text>)
+        {
+          !this.state.visible && (
+            <Text
+              style={styles.question}>
+                {this.props.question}
+            </Text>
+          )
         }
         
-        {this.state.visible && (
-          <Text
-              style={styles.answer}>
-                {this.props.answer}
-          </Text>)
+        {
+          this.state.visible && (
+            <Text
+                style={styles.answer}>
+                  {this.props.answer}
+            </Text>
+          )
         }
         
         <TouchableOpacity
@@ -31,12 +47,25 @@ class Question extends Component {
               visible: !this.state.visible
             })
           }}>
-
-          {this.state.visible ? 
-            <Text>Show Question</Text> :
-            <Text>Show Answer</Text>}
-            
+            {
+              this.state.visible ? 
+              <Text>Show Question</Text> :
+              <Text>Show Answer</Text>
+            }
         </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => this.update(true)}
+          >
+          <Text>Correct?</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => this.update(false)}
+          >
+          <Text>Incorrect?</Text>
+        </TouchableOpacity>
+
       </View>
     )
   }

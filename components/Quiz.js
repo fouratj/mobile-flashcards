@@ -55,17 +55,9 @@ class Quiz extends React.Component {
             <Text>Quiz Finished</Text>
           }
         
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.nextQuestion }>
-
-          <Text>Skip Question</Text>
-            
-        </TouchableOpacity>
         <View>
           <Text style={styles.text}>{this.state.results} / {this.state.questions}</Text>
         </View>
-        
       </View>
     )
   }

@@ -52,7 +52,7 @@ class Quiz extends React.Component {
               updateResults={this.update}
               key={curr} />
             ) :
-            <Text> Quiz Finished</Text>
+            <Text>Quiz Finished</Text>
           }
         
         <TouchableOpacity

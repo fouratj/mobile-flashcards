@@ -12,6 +12,7 @@ import Quiz from './components/Quiz'
 import AddCard from './components/AddCard'
 import MyStatusBar from './components/MyStatusBar'
 import { addDeck } from './store/actions'
+import { setLocalNotification } from './utils/notifications'
 
 const Tabs = TabNavigator({
   Decks: {
@@ -72,9 +73,10 @@ const MainNavigator = StackNavigator({
 })
 
 class App extends React.Component {
-
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
-    console.log('app')
     return (
       <Provider store={createStore(decks)}>
         <View style={{ flex: 1}}>

@@ -52,11 +52,14 @@ class Quiz extends React.Component {
               updateResults={this.update}
               key={curr} />
             ) :
-            <Text>Quiz Finished</Text>
+            <View style={styles.finished}>
+              <Text style={styles.text}>You've finished the Quiz!</Text>
+              <Text style={styles.text}>Congrats! Check your score below.</Text>
+            </View>
           }
         
         <View>
-          <Text style={styles.text}>{this.state.results} / {this.state.questions}</Text>
+          <Text style={styles.results}>{this.state.results} / {this.state.questions}</Text>
         </View>
       </View>
     )
@@ -74,6 +77,15 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 20,
+    alignItems: 'center'
+  },
+  results: {
+    fontSize: 36,
+    textAlign: 'center'
+  },
+  finished: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center'
   }
 })

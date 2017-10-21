@@ -63,14 +63,14 @@ class Question extends Component {
                   style={styles.button}
                   onPress={() => this.update(true)}
                   >
-                  <Text>Correct?</Text>
+                  <Text style={styles.green}>Correct?</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => this.update(false)}
                   >
-                  <Text>Incorrect?</Text>
+                  <Text style={styles.red}>Incorrect?</Text>
                 </TouchableOpacity>
               </View>
             )
@@ -95,11 +95,13 @@ const styles = StyleSheet.create({
   },
   question: {
     fontSize: 24,
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: 20
   },
   answer: {
     fontSize: 36,
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: 20
   },
   showAnswer: {
   },
@@ -109,7 +111,23 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 20,
+    margin: 10,
+  },
+  green: {
+    height: 20,
+    alignItems: 'center',
+    padding: 20,
+    margin: 10,
+    backgroundColor: 'green'
+  },
+  red: {
+    height: 20,
+    alignItems: 'center',
+    padding: 20,
+    margin: 10,
+    backgroundColor: 'red'
   }
 })
 

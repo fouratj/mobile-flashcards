@@ -29,6 +29,14 @@ class Quiz extends React.Component {
     })
   }
 
+  restart = () => {
+    this.setState({
+      ...this.state,
+      results: 0,
+      curr: 0
+    })
+  }
+
   componentDidMount() {
     const { deckId } = this.props.navigation.state.params
     const { decks } = this.props
@@ -37,8 +45,6 @@ class Quiz extends React.Component {
     this.setState({
       ...this.state,
       questions: deck.questions.length
-    }, () => {
-      console.log(this.state)
     })
   }
 
@@ -64,6 +70,11 @@ class Quiz extends React.Component {
             <View style={styles.finished}>
               <Text style={styles.text}>You've finished the Quiz!</Text>
               <Text style={styles.text}>Congrats! Check your score below.</Text>
+              <TouchableOpacity
+                  onPress={() => this.restart()}
+                  >
+                  <Text>Restart?</Text>
+                </TouchableOpacity>
             </View>
           }
         

@@ -2,6 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import Question from './Question'
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from '../utils/notifications'
 
 class Quiz extends React.Component {
   state = {
@@ -36,6 +40,11 @@ class Quiz extends React.Component {
     }, () => {
       console.log(this.state)
     })
+  }
+
+  componentWillUnmount() {
+    clearLocalNotification()
+    setLocalNotification()
   }
 
   render() {

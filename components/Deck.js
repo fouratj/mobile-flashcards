@@ -31,7 +31,6 @@ class Deck extends React.Component {
               :
               null
           }
-          
         </View>
       </View>
     )

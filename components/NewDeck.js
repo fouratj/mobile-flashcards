@@ -30,11 +30,19 @@ class NewDeck extends React.Component {
     saveDeck({
       title: name,
       questions: []
-    }).then(() => this.props.addDeck({ title: name, questions: [] }))
+    }).then(() => {
+      this.props.addDeck({ title: name, questions: [] })
+      this.props.navigation.navigate(
+        'Deck',
+        { deck: name }
+      )
+    })
 
     this.setState({
       name: ''
     })
+
+    
   }
 
   render () {

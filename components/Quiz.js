@@ -70,11 +70,23 @@ class Quiz extends React.Component {
             <View style={styles.finished}>
               <Text style={styles.text}>You've finished the Quiz!</Text>
               <Text style={styles.text}>Congrats! Check your score below.</Text>
-              <TouchableOpacity
-                  onPress={() => this.restart()}
-                  >
+              <View>
+                <TouchableOpacity
+                    onPress={() => this.restart()}
+                    >
                   <Text>Restart?</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate(
+                      'Deck',
+                      { deck: deck.title }
+                    )}
+                    >
+                  <Text>Back to Deck</Text>
+                </TouchableOpacity>
+              </View>
+              
+
             </View>
           }
         
